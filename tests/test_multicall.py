@@ -1,6 +1,6 @@
 from multicall import Call, Multicall
 
-CHAI = '0x06AF07097C9Eeb7fD685c692751D5C66dB49c215'
+POOCOIN = '0xB27ADAfFB9fEa1801459a1a81B17218288c097cc'
 
 
 def from_wei(val):
@@ -13,8 +13,8 @@ def from_ray(val):
 
 def test_multicall():
     multi = Multicall([
-        Call(CHAI, 'totalSupply()(uint256)', [['supply', from_wei]]),
-        Call(CHAI, ['balanceOf(address)(uint256)', CHAI], [['balance', from_ray]]),
+        Call(POOCOIN, 'totalSupply()(uint256)', [['supply', from_wei]]),
+        Call(POOCOIN, ['balanceOf(address)(uint256)', POOCOIN], [['balance', from_ray]]),
     ])
     result = multi()
     assert isinstance(result['supply'], float)

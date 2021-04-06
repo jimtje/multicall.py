@@ -1,6 +1,6 @@
 from multicall import Call
 
-CHAI = '0x06AF07097C9Eeb7fD685c692751D5C66dB49c215'
+POOCOIN = '0xB27ADAfFB9fEa1801459a1a81B17218288c097cc'
 
 
 def from_wei(value):
@@ -8,15 +8,15 @@ def from_wei(value):
 
 
 def test_call():
-    call = Call(CHAI, 'name()(string)', [['name', None]])
-    assert call() == {'name': 'Chai'}
+    call = Call(POOCOIN, 'name()(string)', [['name', None]])
+    assert call() == {'name': 'PooCoin'}
 
 
 def test_call_with_args():
-    call = Call(CHAI, 'balanceOf(address)(uint256)', [['balance', from_wei]])
-    assert isinstance(call([CHAI])['balance'], float)
+    call = Call(POOCOIN, 'balanceOf(address)(uint256)', [['balance', from_wei]])
+    assert isinstance(call([POOCOIN])['balance'], float)
 
 
 def test_call_with_predefined_args():
-    call = Call(CHAI, ['balanceOf(address)(uint256)', CHAI], [['balance', from_wei]])
+    call = Call(POOCOIN, ['balanceOf(address)(uint256)', POOCOIN], [['balance', from_wei]])
     assert isinstance(call()['balance'], float)
